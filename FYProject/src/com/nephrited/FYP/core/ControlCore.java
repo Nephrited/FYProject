@@ -16,7 +16,7 @@ public class ControlCore {
 		controller.addListener(listener);
 		
 		//Request background access
-		controller.setPolicyFlags(Controller.PolicyFlag.POLICY_BACKGROUND_FRAMES);
+		controller.setPolicyFlags(Controller.PolicyFlag.POLICY_BACKGROUND_FRAMES); 
 		
 		//Keep this process running until keypress
 		try {

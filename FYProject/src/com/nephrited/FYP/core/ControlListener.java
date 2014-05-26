@@ -18,11 +18,10 @@ public class ControlListener extends Listener {
 		System.out.println("Listener Attached");
 		
 		//Enable Gesture Support
-		//controller.enableGesture(Gesture.Type.TYPE_CIRCLE);
+		controller.enableGesture(Gesture.Type.TYPE_CIRCLE);
 		controller.enableGesture(Gesture.Type.TYPE_SWIPE);
-		//controller.enableGesture(Gesture.Type.TYPE_KEY_TAP);
+		controller.enableGesture(Gesture.Type.TYPE_KEY_TAP);
 		//controller.enableGesture(Gesture.Type.TYPE_SCREEN_TAP);
-
 	}
 
 	public void onConnect (Controller controller){
@@ -41,38 +40,32 @@ public class ControlListener extends Listener {
 		GestureList gestures = frame.gestures();
 		
 		//For each gesture reported
-		for (int i=0;i<gestures.count();i++) {
-            Gesture gesture = gestures.get(i);
-            
-            //Circle Gesture?
-            if(gesture.type() == Gesture.Type.TYPE_CIRCLE) {
-            	new Circle(gesture);
+		if(gestures.count() == 1) {
+			for (int i=0;i<gestures.count();i++) {
+	            Gesture gesture = gestures.get(i);
+	            
+	            if(gesture.type() == Gesture.Type.TYPE_CIRCLE) {
+	            	Circle circle = new Circle(gesture);
+	            }
+	            
+	            if(gesture.type() == Gesture.Type.TYPE_SWIPE) {
+	            		Swipe swipe = new Swipe(gesture);
+	            }
+	            
+			}
+		} else if (gestures.count() == 2) {
+            Gesture gesture0 = gestures.get(0);
+            Gesture gesture1 = gestures.get(1);
+            	            
+            if(gesture0.type() == Gesture.Type.TYPE_SWIPE) {
+            		DoubleSwipe swipe = new DoubleSwipe(gesture0, gesture1);
             }
             
-            if(gesture.type() == Gesture.Type.TYPE_SWIPE) {
-            	//TODO Redo ALL OF THIS
-            	 SwipeGesture swipe = new SwipeGesture(gesture);
-            	 
-            	 if(swipe.direction().getX() < 0) {
-            		 try {
-						Robot robot = new Robot();
-						robot.keyPress(KeyEvent.VK_WINDOWS);
-						Thread.sleep(10);
-						robot.keyPress(KeyEvent.VK_C);
-						Thread.sleep(10);
-						robot.keyRelease(KeyEvent.VK_C);
-						Thread.sleep(10);
-						robot.keyRelease(KeyEvent.VK_WINDOWS);
-						Thread.sleep(10);
-						Thread.sleep(500);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-            		 
-            	 }
-            }
+            if(gesture0.type() == Gesture.Type.TYPE_KEY_TAP) {
+            		KeyTap keyTap = new KeyTap(gesture0, gesture1);
+            }  
 		}
+
 	}
 
 }
