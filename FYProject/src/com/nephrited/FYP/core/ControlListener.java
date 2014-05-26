@@ -14,9 +14,14 @@ import com.nephrited.FYP.gestures.*;
 
 public class ControlListener extends Listener {
 
+	boolean firstRun = true;
+	
 	public void onInit (Controller controller){
-		System.out.println("Listener Attached");
 		
+		if(firstRun) {
+			System.out.println("Please Connect the Leap Motion");
+			firstRun = false;
+		}
 		//Enable Gesture Support
 		controller.enableGesture(Gesture.Type.TYPE_CIRCLE);
 		controller.enableGesture(Gesture.Type.TYPE_SWIPE);
@@ -25,11 +30,12 @@ public class ControlListener extends Listener {
 	}
 
 	public void onConnect (Controller controller){
-		System.out.println("Ready to begin tracking");        
+		
+		System.out.println("Leap Connected - Ready to begin tracking");        
 	}
 
 	public void onDisconnect (Controller controller){
-		System.out.println("Leap controller lost.");
+		System.out.println("Leap controller disconnected.");
 	}
 
 	public void onFrame (Controller controller){

@@ -2,6 +2,8 @@ package com.nephrited.FYP.gestures;
 
 import com.leapmotion.leap.CircleGesture;
 import com.leapmotion.leap.Gesture;
+import com.nephrited.FYP.core.ActionMapping;
+import com.nephrited.FYP.core.ActionRobot;
 
 /**
  * @author Jade
@@ -31,8 +33,10 @@ public class Circle extends CircleGesture {
 	               
 	        if(clockwise) {
 	        	System.out.println("Clockwise Circle");
+	        	ActionRobot.getInstance().callAction(ActionMapping.getInstance().getMapping(0));
 	        } else {
 	        	System.out.println("Counterclockwise Circle");
+	        	ActionRobot.getInstance().callAction(ActionMapping.getInstance().getMapping(1));
 	        }
 	        
 		}

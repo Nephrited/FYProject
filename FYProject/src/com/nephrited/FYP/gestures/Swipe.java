@@ -6,6 +6,7 @@ package com.nephrited.FYP.gestures;
 import com.leapmotion.leap.Gesture;
 import com.leapmotion.leap.SwipeGesture;
 import com.leapmotion.leap.Vector;
+import com.nephrited.FYP.core.ActionMapping;
 import com.nephrited.FYP.core.ActionRobot;
 
 /**
@@ -42,8 +43,10 @@ public class Swipe extends SwipeGesture {
 				//	Otherwise, it's to the left
 				if(swipeDirection.getX() > 0) {
 					System.out.println("Single Right Swipe");
+					ActionRobot.getInstance().callAction(ActionMapping.getInstance().getMapping(3));
 				} else {
 					System.out.println("Single Left Swipe");
+					ActionRobot.getInstance().callAction(ActionMapping.getInstance().getMapping(2));
 				}
 				
 			} else {
@@ -51,17 +54,11 @@ public class Swipe extends SwipeGesture {
 				//If the value of Y is larger than 0, the movement is to the top
 				//	Otherwise, it's to the bottom
 				if(swipeDirection.getY() > 0) {
-					if(gesture.pointables().count() == 2) {
-						System.out.println("Double Upward Swipe");
-					} else if(gesture.pointables().count() == 1) {
-						System.out.println("Single Upward Swipe");
-					}
+					System.out.println("Single Upward Swipe");
+					ActionRobot.getInstance().callAction(ActionMapping.getInstance().getMapping(4));
 				} else {
-					if(gesture.pointables().count() == 2) {
-						System.out.println("Double Downward Swipe");
-					} else if(gesture.pointables().count() == 1) {
-						System.out.println("Single Downward Swipe");
-					}
+					System.out.println("Single Downward Swipe");
+					ActionRobot.getInstance().callAction(ActionMapping.getInstance().getMapping(5));
 				}
 				
 			}

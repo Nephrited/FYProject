@@ -6,6 +6,8 @@ package com.nephrited.FYP.gestures;
 import com.leapmotion.leap.Gesture;
 import com.leapmotion.leap.SwipeGesture;
 import com.leapmotion.leap.Gesture.State;
+import com.nephrited.FYP.core.ActionMapping;
+import com.nephrited.FYP.core.ActionRobot;
 
 /**
  * @author Jade
@@ -40,9 +42,11 @@ public class DoubleSwipe {
 						//Check for pinch in action
 						if(leftSwipe.direction().getX() > 0 && rightSwipe.direction().getX() < 0) {
 							System.out.println("Pinch In");
+							ActionRobot.getInstance().callAction(ActionMapping.getInstance().getMapping(9));
 						//Check for pinch out action
 						} else if(leftSwipe.direction().getX() < 0 && rightSwipe.direction().getX() > 0) {
 							System.out.println("Pinch Out");
+							ActionRobot.getInstance().callAction(ActionMapping.getInstance().getMapping(10));
 						}
 						
 					} else {
@@ -51,9 +55,11 @@ public class DoubleSwipe {
 						if(leftSwipe.direction().getY() > 0 && rightSwipe.direction().getY() > 0) {
 							//This is upward
 							System.out.println("Double Upward Swipe");
+							ActionRobot.getInstance().callAction(ActionMapping.getInstance().getMapping(6));
 						} else if(leftSwipe.direction().getY() < 0 && rightSwipe.direction().getY() < 0) {
 							//This is downward
 							System.out.println("Double Downward Swipe");
+							ActionRobot.getInstance().callAction(ActionMapping.getInstance().getMapping(7));
 						}
 						
 					}
