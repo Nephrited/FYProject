@@ -1,7 +1,7 @@
-FYProject
+Leap Motion Controller for Windows
 =========
 
-2013-2014 Final Year Project
+This was my 2013-2014 Final Year Project for my BSc.
 
 Proof of concept of computer control using the Leap Motion, implemented using the Leap API.
 
